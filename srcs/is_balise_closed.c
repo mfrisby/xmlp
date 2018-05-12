@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xmlp.c                                             :+:      :+:    :+:   */
+/*   is_balise_closed.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/10 15:15:58 by mfrisby          ###   ########.fr       */
+/*   Created: 2018/05/12 16:38:02 by mfrisby           #+#    #+#             */
+/*   Updated: 2018/05/12 16:45:24 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/xmlp.h"
 
-t_xmlp		*new_xmlp(char *path)
+int is_balise_closed(char *name, char *s)
 {
-	int fd;
-	t_xmlp	*xmlp;
+	int i;
 
-	fd = open_file(path);
-	if (fd < 0)
-		return (NULL);
-	xmlp = malloc(sizeof(t_xmlp));
-	xmlp->fd = fd;
-	xmlp->path = path;
-	read_file(xmlp->fd, xmlp);
-	if (xmlp->content && xmlp->len < 0)
-		return (xmlp);
-	node_parser(xmlp);
-	return (xmlp);
+	i = 0;
+	while (name[i] && s[i] && s[i] != '>')
+	{
+		if (s[i] != name[i])
+			return (-1);
+		i++;
+	}
+	if (s[i] == '>')
+		return (1);
+	return (-1);
 }

@@ -6,16 +6,15 @@
 #    By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/13 19:08:56 by mfrisby           #+#    #+#              #
-#    Updated: 2018/04/27 18:17:30 by mfrisby          ###   ########.fr        #
+#    Updated: 2018/05/12 16:38:54 by mfrisby          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = xmlp.a
 
-#STR = srcs/str/
-
-SRCS = 	srcs/open_file.c srcs/read_file.c srcs/get_const_balise.c srcs/xmlp.c
-#		$(PRINTF)ft_stoa_base.c $(PRINTF)ft_utoa_base.c $(PRINTF)ft_printf_getspace.c \
+SRCS = 	srcs/open_file.c srcs/read_file.c srcs/get_const_balise.c srcs/xmlp.c \
+		srcs/node_parser.c srcs/get_balise_name.c srcs/get_balise_content.c \
+		srcs/is_balise_closed.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,19 +24,24 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
+LIBFT = ./libft/libft.a
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
+	@make -C libft/
+	@ar rc $(NAME) $(OBJS) $(LIBFT)
 	@ranlib $(NAME)
 
 objs:
 	mkdir -p objs
 
 clean:
+	@make clean -C libft
 	@rm -f $(OBJS)
 
 fclean:	clean
+	@make fclean -C libft
 	@rm -f $(NAME)
 
 re: fclean all

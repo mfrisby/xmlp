@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xmlp.c                                             :+:      :+:    :+:   */
+/*   get_balise_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/10 15:15:58 by mfrisby          ###   ########.fr       */
+/*   Created: 2018/05/10 16:06:57 by mfrisby           #+#    #+#             */
+/*   Updated: 2018/05/12 16:36:24 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include "../incs/xmlp.h"
 
-t_xmlp		*new_xmlp(char *path)
+char		*get_balise_name(char *s, int i)
 {
-	int fd;
-	t_xmlp	*xmlp;
+	int len;
+	char *name;
 
-	fd = open_file(path);
-	if (fd < 0)
-		return (NULL);
-	xmlp = malloc(sizeof(t_xmlp));
-	xmlp->fd = fd;
-	xmlp->path = path;
-	read_file(xmlp->fd, xmlp);
-	if (xmlp->content && xmlp->len < 0)
-		return (xmlp);
-	node_parser(xmlp);
-	return (xmlp);
+	len = 0;
+	while (s[len] != '>')
+	{
+		len++;
+	}
+	name = malloc(len);
+	len = 0;
+	while (s[len] != '>')
+	{
+		name[len] = s[len];
+		len++;
+	}
+	name[len] = '\0';
+	return (name);
 }

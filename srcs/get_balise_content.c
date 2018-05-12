@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xmlp.c                                             :+:      :+:    :+:   */
+/*   get_balise_content.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/10 15:15:58 by mfrisby          ###   ########.fr       */
+/*   Created: 2018/05/10 17:06:15 by mfrisby           #+#    #+#             */
+/*   Updated: 2018/05/12 16:35:14 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include "../incs/xmlp.h"
 
-t_xmlp		*new_xmlp(char *path)
+char		*get_balise_content(char *s, int i)
 {
-	int fd;
-	t_xmlp	*xmlp;
+	int len;
+	char *content;
 
-	fd = open_file(path);
-	if (fd < 0)
+	if (!s || !s[i])
 		return (NULL);
-	xmlp = malloc(sizeof(t_xmlp));
-	xmlp->fd = fd;
-	xmlp->path = path;
-	read_file(xmlp->fd, xmlp);
-	if (xmlp->content && xmlp->len < 0)
-		return (xmlp);
-	node_parser(xmlp);
-	return (xmlp);
+	len = 0;
+	while (s && s[len] && s[len] != '<')
+	{
+		len++;
+	}
+	content = malloc(len);
+	len = 0;
+	while (s && s[len] && s[len] != '<')
+	{
+		content[len] = s[len];
+		len++;
+	}
+	content[len] = '\0';
+	return (content);
 }
