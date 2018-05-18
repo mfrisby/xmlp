@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 13:47:37 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 14:27:39 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	get_content(t_node **node, char *s, int i, int len)
 {
 	if (!(*node))
 	{
-		ft_putendl("Erreur content sans balise");
+		ft_putendl("\033[31m Erreur content sans balise \033[0m");
 		exit (0);
 	}
 	i++;
@@ -36,7 +36,7 @@ static int	balise_closed(t_node **node, char *s, int i, int len)
 	}
 	else
 	{
-		ft_putendl("Erreur balise fermante");
+		ft_putendl("\033[31m Erreur balise fermante \033[0m");
 		exit (0);
 	}
 	return (i);
@@ -103,7 +103,7 @@ void		node_parser(t_xmlp *xmlp)
 	xmlp->node->parent = NULL;
 	if (!get_node(xmlp->node, s, i, len))
 	{
-		ft_putendl("ERROR");
+		ft_putendl("\033[31m ERROR \033[0m");
 		exit(0);
 	}
 	ft_putendl("SUCCESS");
