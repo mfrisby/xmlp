@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 12:32:45 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 12:53:48 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,24 @@ static int	balise_closed(t_node **node, char *s, int i, int len)
 
 static int	balise_opened(t_node **node, char *s, int i, int len)
 {
+	t_node *new;
+
 	i++;
-	(*node)->child = malloc(sizeof(t_node));
-	(*node)->child->parent = (*node);
-	(*node) = (*node)->child;
-	(*node)->name = get_balise_name(s + i, i);
+	new = malloc(sizeof(t_node));
+	new->parent = (*node);
+	new->next = NULL;
+	new->child = NULL;
+	new->name = get_balise_name(s + i, i);
+	if (!(*node)->child)
+		(*node)->child = new;
+	else
+	{
+		(*node) = (*node)->child;
+		while ((*node)->next)
+			(*node) = (*node)->next;
+		(*node)->next = new;
+	}
+	(*node) = new;
 	printf("name: %s\n", (*node)->name);
 	i += ft_strlen((*node)->name);
 	return (i);
@@ -89,15 +102,11 @@ void		node_parser(t_xmlp *xmlp)
 	node->next = NULL;
 	node->name = NULL;
 	node->content = NULL;
-	int ret = get_node(node, s, i, len);
-	if (ret == -1)
+	if (!get_node(node, s, i, len))
 	{
 		printf("ERROR\n");
 		exit(0);
 	}
-	if (ret >= len)
-	{
-		printf("SUCCESS\n");
-		exit(0);
-	}
+	printf("SUCCESS\n");
+	exit(0);
 }
