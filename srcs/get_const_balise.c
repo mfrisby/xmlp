@@ -6,13 +6,19 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 17:52:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/04/27 18:03:32 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 12:58:48 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../incs/xmlp.h"
 
+/**
+ * Retourne le nom de la balise
+ * boleen open/close balise type
+ * entoure des <> </>
+ * <nom> ou </nom>
+ **/
 static int copy(char *name, char **string, int y)
 {
 	int	i;

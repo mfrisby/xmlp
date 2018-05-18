@@ -6,13 +6,17 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:06:15 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/12 16:35:14 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 12:57:23 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../incs/xmlp.h"
 
+/**
+ * set string in node->content
+ * tant quon atteind pas fin de balise
+ **/
 char		*get_balise_content(char *s, int i)
 {
 	int len;
