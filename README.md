@@ -4,4 +4,7 @@
 
 C - Library 
 
-unfinished
+##TODO
+
+- Verifier qu'il y a une balise unique englobante
+- methode pour recuperer une node
