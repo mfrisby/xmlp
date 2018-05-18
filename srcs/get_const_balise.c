@@ -6,23 +6,24 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 17:52:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 12:58:48 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 14:46:22 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../incs/xmlp.h"
 
-/**
- * Retourne le nom de la balise
- * boleen open/close balise type
- * entoure des <> </>
- * <nom> ou </nom>
- **/
-static int copy(char *name, char **string, int y)
+/*
+** Retourne le nom de la balise
+** boleen open/close balise type
+** entoure des <> </>
+** <nom> ou </nom>
+*/
+
+static int		copy(char *name, char **string, int y)
 {
-	int	i;
-	
+	int			i;
+
 	i = 0;
 	while (name[i])
 	{
@@ -33,10 +34,10 @@ static int copy(char *name, char **string, int y)
 	return (y);
 }
 
-char	*get_const_balise(char *name, int is_open)
+char			*get_const_balise(char *name, int is_open)
 {
-	int	i;
-	char *string;
+	int			i;
+	char		*string;
 
 	i = 0;
 	string = malloc(sizeof(name + 3));
@@ -53,6 +54,6 @@ char	*get_const_balise(char *name, int is_open)
 	}
 	i = copy(name, &string, i);
 	string[i] = '>';
-	string[i+1] = '\0';
+	string[i + 1] = '\0';
 	return (string);
 }

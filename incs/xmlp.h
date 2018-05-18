@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 16:50:26 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/12 16:45:17 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 14:49:50 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct			s_xmlp
 
 typedef	struct			s_node
 {
-	struct s_node		*parent;//level up
-	struct s_node		*child;//level down
-	struct s_node		*next;//same level	
+	struct s_node		*parent;
+	struct s_node		*child;
+	struct s_node		*next;
 	char				*content;
 	char				*name;
 }						t_node;

@@ -6,18 +6,18 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 14:27:39 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 14:41:44 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/xmlp.h"
 
-static int	get_content(t_node **node, char *s, int i, int len)
+static int		get_content(t_node **node, char *s, int i, int len)
 {
 	if (!(*node))
 	{
 		ft_putendl("\033[31m Erreur content sans balise \033[0m");
-		exit (0);
+		exit(0);
 	}
 	i++;
 	(*node)->content = get_balise_content(s + i, i);
@@ -25,7 +25,7 @@ static int	get_content(t_node **node, char *s, int i, int len)
 	return (i);
 }
 
-static int	balise_closed(t_node **node, char *s, int i, int len)
+static int		balise_closed(t_node **node, char *s, int i, int len)
 {
 	if ((is_balise_closed((*node)->name, s + i)) == 1)
 	{
@@ -37,14 +37,14 @@ static int	balise_closed(t_node **node, char *s, int i, int len)
 	else
 	{
 		ft_putendl("\033[31m Erreur balise fermante \033[0m");
-		exit (0);
+		exit(0);
 	}
 	return (i);
 }
 
-static int	balise_opened(t_node **node, char *s, int i, int len)
+static int		balise_opened(t_node **node, char *s, int i, int len)
 {
-	t_node *new;
+	t_node		*new;
 
 	new = malloc(sizeof(t_node));
 	new->parent = (*node);
@@ -71,11 +71,11 @@ static int	balise_opened(t_node **node, char *s, int i, int len)
 	return (i);
 }
 
-static int get_node(t_node *node, char *s, int i, int len)
+static int		get_node(t_node *node, char *s, int i, int len)
 {
 	if (!s || !s[i] || i >= len)
 		return (-1);
-	if (s[i] == '<' && s[i+1] && s[i+1] == '/')
+	if (s[i] == '<' && s[i + 1] && s[i + 1] == '/')
 		i = balise_closed(&node, s, i + 2, len);
 	else if (s[i] == '<')
 		i = balise_opened(&node, s, i + 1, len);
@@ -86,11 +86,11 @@ static int get_node(t_node *node, char *s, int i, int len)
 	return (i);
 }
 
-void		node_parser(t_xmlp *xmlp)
+void			node_parser(t_xmlp *xmlp)
 {
-	int i;
-	int len;
-	char *s;
+	int			i;
+	int			len;
+	char		*s;
 
 	i = 0;
 	s = xmlp->content;

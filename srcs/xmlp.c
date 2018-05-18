@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/10 15:15:58 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/18 14:47:22 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_xmlp		*new_xmlp(char *path)
 {
-	int fd;
+	int		fd;
 	t_xmlp	*xmlp;
 
 	fd = open_file(path);
