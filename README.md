@@ -7,4 +7,22 @@
 ## TODO
 
 - Verifier qu'il y a une balise unique englobante
-- methode pour recuperer une node
+- Verifier la fermeture de la balise englobante
+- Methode pour recuperer une node
+- Arreter la lecture a la premiere erreur, fermer la balise englobante et retourner
+- Norme
+
+## Nodes
+
+- xmlp->node => node vide, son enfant est la balise englobante du document
+- node->child => porte vers le niveau inferieur, premier enfant
+- node->next => vers une node de meme niveau, pas de limite
+
+### Example
+
+node-child => premier enfant
+node->child->next => deuxieme enfant
+node->child->next->child => enfant du deuxieme enfant
+node->child->next->child->next => deuxieme enfant du deuxieme enfant
+node->child->next->child->next->next => troisieme enfant du deuxieme enfant
+node->child->next->next->child->next => deuxieme enfant du troisieme enfant
