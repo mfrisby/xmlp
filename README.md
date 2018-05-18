@@ -20,9 +20,9 @@
 
 ### Example
 
-node-child => premier enfant
-node->child->next => deuxieme enfant
-node->child->next->child => enfant du deuxieme enfant
-node->child->next->child->next => deuxieme enfant du deuxieme enfant
-node->child->next->child->next->next => troisieme enfant du deuxieme enfant
-node->child->next->next->child->next => deuxieme enfant du troisieme enfant
+- node-child => premier enfant
+- node->child->next => deuxieme enfant
+- node->child->next->child => enfant du deuxieme enfant
+- node->child->next->child->next => deuxieme enfant du deuxieme enfant
+- node->child->next->child->next->next => troisieme enfant du deuxieme enfant
+- node->child->next->next->child->next => deuxieme enfant du troisieme enfant
