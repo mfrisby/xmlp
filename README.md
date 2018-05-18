@@ -11,12 +11,14 @@
 - Methode pour recuperer une node
 - Arreter la lecture a la premiere erreur, fermer la balise englobante et retourner
 - Norme
+- Freedom for the mallocs
 
 ## Nodes
 
 - xmlp->node => node vide, son enfant est la balise englobante du document
 - node->child => porte vers le niveau inferieur, premier enfant
 - node->next => vers une node de meme niveau, pas de limite
+- node->parent => niveau superieur
 
 ### Example
 
