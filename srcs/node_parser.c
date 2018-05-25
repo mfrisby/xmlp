@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 14:52:12 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/25 15:08:50 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static int		get_content(t_node **node, char *s, int i, int *len)
 		(*len)= 0;
 		return (i);
 	}
-	if ((*node)->content)
-		return (i + 1);
-	i++;
 	(*node)->content = get_balise_content(s + i, i);
 	if ((*node)->content)
 		i += ft_strlen((*node)->content);
@@ -76,9 +73,9 @@ static int		get_node(t_node *node, char *s, int i, int len)
 	else if (s[i] == '<')
 		i = balise_opened(&node, s, i + 1, len);
 	else
-		i = get_content(&node, s, i, &len);
+		i = get_content(&node, s, i + 1, &len);
 	if (i < len)
-		i += get_node(node, s, i, len);
+		i = get_node(node, s, i, len);
 	return (i);
 }
 

@@ -6,17 +6,12 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 16:06:57 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 14:44:07 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/25 15:03:02 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../incs/xmlp.h"
-
-/*
- ** recupere le nom de la balise
- ** <nom>
-*/
 
 char		*get_balise_name(char *s, int i)
 {
