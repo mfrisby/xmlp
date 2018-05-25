@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_balise_content.c                               :+:      :+:    :+:   */
+/*   init_node.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/10 17:06:15 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 14:53:55 by mfrisby          ###   ########.fr       */
+/*   Created: 2018/05/25 13:33:14 by mfrisby           #+#    #+#             */
+/*   Updated: 2018/05/25 14:33:57 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include "../incs/xmlp.h"
 
-char		*get_balise_content(char *s, int i)
+t_node	*init_node(t_node *parent)
 {
-	int		len;
-	char	*content;
+	t_node		*node;
 
-	if (!s || !s[i])
-		return (NULL);
-	len = 0;
-	while (s && s[len] && s[len] != '<')
-	{
-		len++;
-	}
-	content = malloc(len + 1);
-	len = 0;
-	while (s && s[len] && s[len] != '<')
-	{
-		content[len] = s[len];
-		len++;
-	}
-	content[len] = '\0';
-	return (content);
+	node = malloc(sizeof(t_node));
+	node->parent = parent;
+	node->next = NULL;
+	node->child = NULL;
+	node->content = NULL;
+	node->name = NULL;
+	return (node);
 }

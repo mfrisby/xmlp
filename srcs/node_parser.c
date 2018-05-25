@@ -6,26 +6,31 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/18 14:41:44 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/25 14:52:12 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/xmlp.h"
+#include <stdlib.h>
 
-static int		get_content(t_node **node, char *s, int i, int len)
+static int		get_content(t_node **node, char *s, int i, int *len)
 {
 	if (!(*node))
 	{
 		ft_putendl("\033[31m Erreur content sans balise \033[0m");
-		exit(0);
+		(*len)= 0;
+		return (i);
 	}
+	if ((*node)->content)
+		return (i + 1);
 	i++;
 	(*node)->content = get_balise_content(s + i, i);
-	i += ft_strlen((*node)->content);
+	if ((*node)->content)
+		i += ft_strlen((*node)->content);
 	return (i);
 }
 
-static int		balise_closed(t_node **node, char *s, int i, int len)
+static int		balise_closed(t_node **node, char *s, int i, int *len)
 {
 	if ((is_balise_closed((*node)->name, s + i)) == 1)
 	{
@@ -37,36 +42,27 @@ static int		balise_closed(t_node **node, char *s, int i, int len)
 	else
 	{
 		ft_putendl("\033[31m Erreur balise fermante \033[0m");
-		exit(0);
+		(*len) = 0;
 	}
 	return (i);
 }
 
 static int		balise_opened(t_node **node, char *s, int i, int len)
 {
-	t_node		*new;
-
-	new = malloc(sizeof(t_node));
-	new->parent = (*node);
-	new->next = NULL;
-	new->child = NULL;
-	new->content = NULL;
-	new->name = get_balise_name(s + i, i);
-	if (!(*node))
+	if ((*node) && !(*node)->child)
 	{
-		new->parent = NULL;
-		(*node) = new;
+		(*node)->child = init_node((*node));
+		(*node) = (*node)->child;
 	}
-	else if (!(*node)->child)
-		(*node)->child = new;
-	else
+	else if ((*node) && (*node)->child)
 	{
 		(*node) = (*node)->child;
 		while ((*node)->next)
 			(*node) = (*node)->next;
-		(*node)->next = new;
+		(*node)->next = init_node((*node)->parent);
+		(*node) = (*node)->next;
 	}
-	(*node) = new;
+	(*node)->name = get_balise_name(s + i, i);
 	i += ft_strlen((*node)->name);
 	return (i);
 }
@@ -76,11 +72,11 @@ static int		get_node(t_node *node, char *s, int i, int len)
 	if (!s || !s[i] || i >= len)
 		return (-1);
 	if (s[i] == '<' && s[i + 1] && s[i + 1] == '/')
-		i = balise_closed(&node, s, i + 2, len);
+		i = balise_closed(&node, s, i + 2, &len);
 	else if (s[i] == '<')
 		i = balise_opened(&node, s, i + 1, len);
 	else
-		i = get_content(&node, s, i, len);
+		i = get_content(&node, s, i, &len);
 	if (i < len)
 		i += get_node(node, s, i, len);
 	return (i);
@@ -88,23 +84,16 @@ static int		get_node(t_node *node, char *s, int i, int len)
 
 void			node_parser(t_xmlp *xmlp)
 {
-	int			i;
+	int			ret;
 	int			len;
-	char		*s;
 
-	i = 0;
-	s = xmlp->content;
-	len = ft_strlen(s);
-	xmlp->node = malloc(sizeof(t_node));
-	xmlp->node->name = NULL;
-	xmlp->node->content = NULL;
-	xmlp->node->child = NULL;
-	xmlp->node->next = NULL;
-	xmlp->node->parent = NULL;
-	if (!get_node(xmlp->node, s, i, len))
-	{
-		ft_putendl("\033[31m ERROR \033[0m");
-		exit(0);
-	}
-	ft_putendl("SUCCESS");
+	len = ft_strlen(xmlp->content);
+	xmlp->node = init_node(NULL);
+	ret = get_node(xmlp->node, xmlp->content, 0, len);
+	if (ret == -1)
+		xmlp->status = ft_strdup("\033[31m ERROR \033[0m");
+	else if (ret > len)
+		xmlp->status = ft_strdup("\033[33m WARNING \033[0m");
+	else
+		xmlp->status = ft_strdup("\033[32m SUCCESS \033[0m");
 }
