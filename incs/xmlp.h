@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 16:50:26 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 13:58:55 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/25 15:42:17 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef	struct			s_node
 	struct s_node		*next;
 }						t_node;
 
+//functions for lib not user 
+
 void					read_file(int fd, t_xmlp *xmlp);
 int						open_file(char *path);
 char					*get_const_balise(char *name, int is_open);
@@ -46,5 +48,11 @@ t_node					*init_node(t_node *parent);
 char					*get_balise_name(char *s, int i);
 char					*get_balise_content(char *s, int i);
 int						is_balise_closed(char *name, char *s);
+
+//functions to call by user
+
+char					*xmlp_get_node_content(t_xmlp *xmlp, char *path);
+char					*xmlp_split_node_content(t_xmlp *xmlp,
+							char *path, char delimiter);
 
 #endif

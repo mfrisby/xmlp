@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 15:08:50 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/05/25 15:09:55 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		get_content(t_node **node, char *s, int i, int *len)
 	if (!(*node))
 	{
 		ft_putendl("\033[31m Erreur content sans balise \033[0m");
-		(*len)= 0;
+		(*len) = 0;
 		return (i);
 	}
 	(*node)->content = get_balise_content(s + i, i);
