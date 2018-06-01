@@ -8,7 +8,6 @@
 
 - Verifier qu'il y a une balise unique englobante
 - Verifier la fermeture de la balise englobante
-- Methode pour recuperer une node
 - Arreter la lecture a la premiere erreur, fermer la balise englobante et retourner
 - Norme
 - Freedom for the mallocs
