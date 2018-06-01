@@ -20,6 +20,15 @@
 - node->next => vers une node de meme niveau, pas de limite
 - node->parent => niveau superieur
 
+### Methodes
+
+- *xmlp_get_node_content(xmlp, "path/to/content");
+	<path><to><content>hello</content></to></path>
+	retourne "hello" 
+- **xmlp_split_node_content(xmlp, "toto/tutu", '/');
+	<toto><tutu>hello/salut</tutu></toto>
+	retourne "hello" et "salut" dans un tableau
+
 ### Example
 
 - node-child => premier enfant
