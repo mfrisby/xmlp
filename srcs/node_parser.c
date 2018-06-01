@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 15:09:55 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:18:36 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int		get_content(t_node **node, char *s, int i, int *len)
 		(*len) = 0;
 		return (i);
 	}
-	(*node)->content = get_balise_content(s + i, i);
-	if ((*node)->content)
-		i += ft_strlen((*node)->content);
+	(*node)->content = get_balise_content(s, i);
+	while (s && s[i] && s[i] != '<')
+		i++;
 	return (i);
 }
 
@@ -60,20 +60,23 @@ static int		balise_opened(t_node **node, char *s, int i, int len)
 		(*node) = (*node)->next;
 	}
 	(*node)->name = get_balise_name(s + i, i);
-	i += ft_strlen((*node)->name);
-	return (i);
+	while (s[i] != '>')
+		i++;
+	return (i+1);
 }
 
 static int		get_node(t_node *node, char *s, int i, int len)
-{
-	if (!s || !s[i] || i >= len)
+{		
+	while (s && s[i] && s[i] == ' ')
+		i++;
+	if (!s || i < 0 || !s[i] || i >= len)
 		return (-1);
 	if (s[i] == '<' && s[i + 1] && s[i + 1] == '/')
 		i = balise_closed(&node, s, i + 2, &len);
 	else if (s[i] == '<')
 		i = balise_opened(&node, s, i + 1, len);
 	else
-		i = get_content(&node, s, i + 1, &len);
+		i = get_content(&node, s, i, &len);
 	if (i < len)
 		i = get_node(node, s, i, len);
 	return (i);
@@ -84,9 +87,8 @@ void			node_parser(t_xmlp *xmlp)
 	int			ret;
 	int			len;
 
-	len = ft_strlen(xmlp->content);
 	xmlp->node = init_node(NULL);
-	ret = get_node(xmlp->node, xmlp->content, 0, len);
+	ret = get_node(xmlp->node, xmlp->content, 0, xmlp->len);
 	if (ret == -1)
 		xmlp->status = ft_strdup("\033[31m ERROR \033[0m");
 	else if (ret > len)

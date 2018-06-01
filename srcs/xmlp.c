@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 13:25:47 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 14:28:40 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_xmlp		*new_xmlp(char *path)
 	xmlp->fd = fd;
 	xmlp->path = path;
 	read_file(xmlp->fd, xmlp);
+	close(xmlp->fd);
 	if (!xmlp || !xmlp->content || xmlp->len <= 0)
 	{
 		free(xmlp);

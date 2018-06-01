@@ -6,30 +6,44 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:06:15 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 15:09:32 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:18:14 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "../incs/xmlp.h"
 
+static int	get_len(char *s, int i)
+{
+	int len;
+
+	len = 0;
+	while (s && s[i] && s[i] != '<')
+	{
+		i++;
+		len++;
+	}
+	return (len);
+}
+
 char		*get_balise_content(char *s, int i)
 {
+	int		y;
 	int		len;
 	char	*content;
 
 	if (!s || !s[i])
 		return (NULL);
-	len = 0;
-	while (s && s[len] && s[len] != '<')
-		len++;
-	content = malloc(len + 1);
-	len = 0;
-	while (s && s[len] && s[len] != '<')
+	y = 0;
+	len = get_len(s, i);
+	content = ft_strnew(len + 1);
+	while (y < len)
 	{
-		content[len] = s[len];
-		len++;
+		content[y] = s[i];
+		y++;
+		i++;
 	}
-	content[len] = '\0';
+	content[y] = '\0';
+	ft_putendl(content);
 	return (content);
 }
