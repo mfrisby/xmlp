@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 16:50:26 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 15:42:17 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:53:35 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int						is_balise_closed(char *name, char *s);
 //functions to call by user
 
 char					*xmlp_get_node_content(t_xmlp *xmlp, char *path);
-char					*xmlp_split_node_content(t_xmlp *xmlp,
+char					**xmlp_split_node_content(t_xmlp *xmlp,
 							char *path, char delimiter);
 
 #endif
