@@ -6,12 +6,12 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 17:52:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:23 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:57 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include "libxml.h"
+#include "xmlp.h"
 
 /*
 ** Retourne le nom de la balise

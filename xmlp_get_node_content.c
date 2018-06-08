@@ -6,11 +6,11 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 15:40:10 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:30 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:42:01 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libxml.h"
+#include "xmlp.h"
 #include <stdlib.h>
 
 static char	**split_path(char *path, int *len)

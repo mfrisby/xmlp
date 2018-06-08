@@ -6,12 +6,12 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 15:40:27 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:28 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:53 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include "libxml.h"
+#include "xmlp.h"
 
 int			open_file(char *path)
 {

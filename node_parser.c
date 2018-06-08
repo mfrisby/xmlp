@@ -6,11 +6,11 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:13 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:54 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libxml.h"
+#include "xmlp.h"
 #include <stdlib.h>
 
 static int		get_content(t_node **node, char *s, int i, int *len)

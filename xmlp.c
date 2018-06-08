@@ -6,11 +6,11 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 18:14:18 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:29 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:51 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libxml.h"
+#include "xmlp.h"
 
 t_xmlp		*new_xmlp(char *path)
 {

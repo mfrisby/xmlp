@@ -6,11 +6,11 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 13:33:14 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:25 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:56 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libxml.h"
+#include "xmlp.h"
 
 t_node	*init_node(t_node *parent)
 {

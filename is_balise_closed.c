@@ -6,11 +6,11 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/12 16:38:02 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/08 16:28:27 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/08 16:41:55 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libxml.h"
+#include "xmlp.h"
 
 /*
 ** Check si la balise est referme
