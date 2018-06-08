@@ -1,0 +1,19 @@
+<scene>
+	<cam>
+		<position>0,0,0</position>
+	</cam>
+	<sphere>
+		<position>
+		 1,2,3
+		 </position>
+		<radius>3</radius>
+		<couleur>red</couleur>
+	</sphere>
+	<cylindre>
+		<position>456,7,1
+		</position>
+		<radius></radius>
+		<couleur>456</couleur>
+		<direction>8</direction>
+	</cylindre>
+</scene>
