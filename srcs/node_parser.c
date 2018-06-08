@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 15:02:09 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/01 16:18:36 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:44:25 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,4 @@ void			node_parser(t_xmlp *xmlp)
 
 	xmlp->node = init_node(NULL);
 	ret = get_node(xmlp->node, xmlp->content, 0, xmlp->len);
-	if (ret == -1)
-		xmlp->status = ft_strdup("\033[31m ERROR \033[0m");
-	else if (ret > len)
-		xmlp->status = ft_strdup("\033[33m WARNING \033[0m");
-	else
-		xmlp->status = ft_strdup("\033[32m SUCCESS \033[0m");
 }

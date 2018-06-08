@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:06:15 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/06/01 16:18:14 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:48:41 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char		*get_balise_content(char *s, int i)
 		return (NULL);
 	y = 0;
 	len = get_len(s, i);
+	if (len <= 0)
+		return (NULL);
 	content = ft_strnew(len + 1);
 	while (y < len)
 	{
@@ -44,6 +46,5 @@ char		*get_balise_content(char *s, int i)
 		i++;
 	}
 	content[y] = '\0';
-	ft_putendl(content);
 	return (content);
 }

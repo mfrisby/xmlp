@@ -6,7 +6,7 @@
 /*   By: mfrisby <mfrisby@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 14:50:37 by mfrisby           #+#    #+#             */
-/*   Updated: 2018/05/25 17:24:29 by mfrisby          ###   ########.fr       */
+/*   Updated: 2018/06/01 16:57:34 by mfrisby          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 
 static void	recursive_node(t_node *node)
 {
-	ft_putstr("- name: ");
-	ft_putendl(node->name);
-	ft_putstr("- content: ");
-	ft_putendl(node->content);
+	ft_putstr("name: ");
+	ft_putstr(node->name);
+	ft_putstr(" --- ");
+	ft_putstr(" content: ");
+	ft_putstr(node->content);
+	ft_putchar('\n');
 	if (node->child)
 		recursive_node(node->child);
 	if (node->next)
@@ -54,10 +56,18 @@ int			main(int ac, char **av)
 			return (-1);
 		}
 		//read_xmlp(xmlp);
-		char *content = xmlp_get_node_content(xmlp, "scene/cylindre");
+		char *content = xmlp_get_node_content(xmlp, "scene/cylindre/position");
+		char **split = xmlp_split_node_content(xmlp, "scene/cylindre/position", ',');
 		if (content)
 			ft_putendl(content);
-		close(xmlp->fd);
+		else
+			ft_putendl("null");
+		int i = 0;
+		while (split && split[i])
+		{
+			ft_putendl(split[i]);
+			i++;
+		}
 	}
 	return (0);
 }
